@@ -12,7 +12,11 @@ function Inventory:Inventory(object)
 end
 
 function Inventory:GetInventory(size)
-    size = self.m_object.size() or 16
+    if self.m_object then
+       size = self.m_object.size()
+    else size = 16
+    end
+
     for i = 1, size do   
         local details = self.m_object.getItemDetail(i)
         table.insert(self.m_inventory, {m_index = i, m_item_details = details})
